@@ -22,11 +22,12 @@
             this.AccountType = typescoretype;
             this.AccountNumber = GenerateAccountNumber();
         }           
-        public bool Credit(long amount)
+        public bool Credit(long amount,BankAccount bankAccount)
         {
             if(Balance>=amount)
             {
                 Balance -= amount;
+                bankAccount.Debit(amount);
                 return true;
             }   
             return false;
@@ -35,7 +36,7 @@
         {
             Balance+=amount;
         }
-
+       
         public override string? ToString()
         {
             return 
